@@ -100,20 +100,27 @@
             text-shadow: 0 0 5px var(--text-main);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (UPDATED LAYOUT) --- */
         .hero {
-            height: 90vh;
+            min-height: 90vh; /* Changed from fixed height to min-height */
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-direction: row; /* Side by side layout */
+            justify-content: space-between;
+            align-items: center;
             padding: 0 5%;
+            gap: 4rem; /* Gap between text and image */
+            padding-top: 100px; /* Space for fixed nav */
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 800px;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
+            font-size: clamp(2.5rem, 6vw, 5rem);
             line-height: 1.1;
             letter-spacing: -2px;
-            max-width: 900px;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 1s forwards 0.2s;
@@ -129,10 +136,41 @@
             font-size: 1.2rem;
             color: var(--text-muted);
             margin-top: 1.5rem;
-            max-width: 700px;
+            max-width: 600px;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 1s forwards 0.4s;
+        }
+
+        /* Hero Image Styles */
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(30px); /* Slide in from right */
+            animation: fadeUp 1s forwards 0.6s;
+        }
+
+        .hero-img {
+            width: 100%;
+            max-width: 450px; /* Limit image size */
+            height: auto;
+            border: none; /* No Border as requested */
+            outline: none;
+            
+            /* Aesthetics */
+            border-radius: 20px; 
+            box-shadow: 0 20px 60px rgba(0,0,0, 0.6); 
+            filter: grayscale(10%); /* Slight blending */
+            transition: var(--transition);
+        }
+
+        .hero-img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(212, 255, 0, 0.15);
         }
 
         /* Pulsing CTA Button */
@@ -145,7 +183,7 @@
             transition: var(--transition);
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeUp 1s forwards 0.6s, pulse 2s infinite;
+            animation: fadeUp 1s forwards 0.8s, pulse 2s infinite;
             color: var(--accent);
             font-weight: 700;
             text-transform: uppercase;
@@ -356,7 +394,27 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
+            .hero {
+                flex-direction: column; /* Stack vertically on mobile */
+                text-align: center;
+                justify-content: center;
+                gap: 2rem;
+                padding-top: 120px;
+            }
+
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { margin-left: auto; margin-right: auto; }
+            
+            .hero-image-container {
+                width: 100%;
+                margin-top: 10px;
+                transform: translateY(20px);
+            }
+
+            .hero-img {
+                max-width: 280px; /* Smaller image on mobile */
+            }
+
             .work-grid { grid-template-columns: 1fr; }
             nav { padding: 1rem 5%; }
             .nav-links { display: none; }
@@ -378,10 +436,16 @@
     </nav>
 
     <header class="hero">
-        <h1>Visual and Interactive Designer <br> crafting <span class="role-highlight">impactful</span> user experiences.</h1>
-        <p>A Graphic Designer & UI/UX Specialist with **3.5 years of experience** in managing the complete design pipeline—from print media and video to high-fidelity **Figma** prototypes. Seeking to bridge aesthetics with usability.</p>
-        <div>
-            <a href="#work" class="cta-btn">View Featured Projects</a>
+        <div class="hero-content">
+            <h1>Visual and Interactive Designer <br> crafting <span class="role-highlight">impactful</span> user experiences.</h1>
+            <p>A Graphic Designer & UI/UX Specialist with **3.5 years of experience** in managing the complete design pipeline—from print media and video to high-fidelity **Figma** prototypes.</p>
+            <div>
+                <a href="#work" class="cta-btn">View Featured Projects</a>
+            </div>
+        </div>
+
+        <div class="hero-image-container">
+            <img src="Gemini_Generated_Image_y6xfp9y6xfp9y6xf (1).png" alt="Nidhish Mani" class="hero-img">
         </div>
     </header>
 
