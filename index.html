@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nidhish Mani | Graphic & UI/UX Specialist</title>
+    <title>Nidhish Mani | Cyberpunk Specialist</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
@@ -14,14 +16,16 @@
         /* --- CSS VARIABLES & RESET --- */
         /* ---------------------------------- */
         :root {
-            --bg-color: #0c0d15; /* Deeper Dark Blue/Black */
+            --bg-color: #0c0d15;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
-            --accent: #d4ff00; /* Neon Lime - High Contrast */
+            --accent: #d4ff00; /* Neon Lime */
             --accent-glow: rgba(212, 255, 0, 0.6);
-            --card-bg: rgba(26, 26, 26, 0.8);
-            --font-main: 'Inter', sans-serif;
-            --font-accent: 'Space Mono', monospace;
+            --card-bg: rgba(26, 26, 26, 0.6); /* Reduced opacity for glass effect */
+            
+            /* CYBERPUNK FONTS */
+            --font-main: 'Space Grotesk', sans-serif;
+            --font-accent: 'Orbitron', monospace;
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -38,9 +42,42 @@
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            /* Subtle radial gradient for depth and atmosphere */
-            background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, var(--bg-color) 70%);
+            position: relative; /* Needed for canvas and blobs */
         }
+        
+        /* ---------------------------------- */
+        /* --- NEURAL NETWORK CANVAS & BLOBS --- */
+        /* ---------------------------------- */
+        #neural-network-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2; /* Below everything */
+            opacity: 0.3; /* Subtle network */
+        }
+        
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(212, 255, 0, 0.1);
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float-blob 20s infinite ease-in-out;
+        }
+        
+        .blob:nth-child(1) { top: 5%; left: 10%; transform: scale(1.2); animation-delay: 0s; }
+        .blob:nth-child(2) { bottom: 10%; right: 5%; background: rgba(0, 255, 255, 0.1); transform: scale(0.8); animation-delay: -10s; }
+        .blob:nth-child(3) { top: 40%; right: 30%; transform: scale(1.5); animation-delay: -5s; }
+
+        @keyframes float-blob {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
 
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
@@ -61,33 +98,33 @@
         }
         
         .section-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 4px;
+            letter-spacing: 5px;
             font-family: var(--font-accent);
             color: var(--accent);
             position: relative;
             padding-bottom: 0.5rem;
         }
         
-        /* Underline effect for section headers */
         .section-header h2::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
+            width: 70px; /* Longer underline */
+            height: 4px;
             background: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
         
         .section-header span {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             margin-top: 1rem;
+            letter-spacing: 1px;
         }
 
         /* ---------------------------------- */
@@ -103,19 +140,19 @@
             top: 0;
             z-index: 100;
             /* Enhanced Glassmorphism Effect */
-            backdrop-filter: blur(20px);
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid rgba(212, 255, 0, 0.2);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            background: rgba(10, 10, 10, 0.6); /* Lighter background for better glass look */
+            border-bottom: 1px solid rgba(212, 255, 0, 0.3);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.6);
             transition: var(--transition);
         }
 
         .logo {
-            font-weight: 800;
-            font-size: 1.6rem;
-            letter-spacing: 3px;
+            font-weight: 900;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
             color: var(--accent);
-            text-shadow: 0 0 8px var(--accent-glow);
+            text-shadow: 0 0 10px var(--accent-glow);
             font-family: var(--font-accent);
         }
 
@@ -126,9 +163,9 @@
             transition: var(--transition);
             font-weight: 600;
             position: relative;
+            font-family: var(--font-accent);
         }
         
-        /* Hover glow and underline effect for nav links */
         .nav-links a::after {
             content: '';
             position: absolute;
@@ -143,6 +180,7 @@
 
         .nav-links a:hover {
             color: var(--accent);
+            text-shadow: 0 0 3px var(--accent-glow);
         }
         
         .nav-links a:hover::after {
@@ -150,7 +188,7 @@
         }
 
         /* ---------------------------------- */
-        /* --- HERO SECTION (Updated Image) --- */
+        /* --- HERO SECTION (Glitch Effect & Image Float) --- */
         /* ---------------------------------- */
         .hero {
             min-height: 100vh;
@@ -175,17 +213,59 @@
             font-weight: 800;
         }
         
-        .hero h1 .role-highlight {
-            color: var(--accent); 
+        /* Glitch Animation for Name */
+        .glitch-text {
+            color: var(--accent);
             font-style: normal;
             text-shadow: 0 0 15px var(--accent-glow);
             transition: var(--transition);
             display: inline-block;
+            position: relative;
+            font-family: var(--font-accent);
+            animation: glitch-anim 4s infinite alternate;
         }
         
-        .hero h1:hover .role-highlight {
-            transform: scale(1.05);
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+            clip: rect(0, 0, 0, 0);
         }
+        
+        .glitch-text::before {
+            left: -1px;
+            text-shadow: 1px 0 rgba(0, 255, 255, 0.7);
+            animation: glitch-anim-before 2.5s infinite linear alternate-reverse;
+        }
+        
+        .glitch-text::after {
+            left: 1px;
+            text-shadow: -1px 0 rgba(255, 0, 255, 0.7);
+            animation: glitch-anim-after 2s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim-before {
+            0% { clip: rect(24px, 9999px, 86px, 0); }
+            20% { clip: rect(100px, 9999px, 84px, 0); }
+            40% { clip: rect(65px, 9999px, 20px, 0); }
+            60% { clip: rect(14px, 9999px, 33px, 0); }
+            80% { clip: rect(50px, 9999px, 120px, 0); }
+            100% { clip: rect(10px, 9999px, 70px, 0); }
+        }
+        
+        @keyframes glitch-anim-after {
+            0% { clip: rect(90px, 9999px, 40px, 0); }
+            25% { clip: rect(40px, 9999px, 70px, 0); }
+            50% { clip: rect(70px, 9999px, 20px, 0); }
+            75% { clip: rect(10px, 9999px, 60px, 0); }
+            100% { clip: rect(30px, 9999px, 90px, 0); }
+        }
+
 
         .hero p {
             font-size: 1.3rem;
@@ -195,35 +275,35 @@
             font-weight: 300;
         }
 
-        /* Hero Image Styles - Borderless and Geometric */
+        /* Hero Image Styles - Floating */
         .hero-image-container {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
+            padding: 0px;
         }
 
         .hero-img {
             width: 100%;
-            max-width: 550px;
+            max-width: 450px; /* Slightly smaller for focus */
             height: auto;
-            /* Border removed. Using clip-path for futuristic geometry */
             clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-            box-shadow: 0 0 40px rgba(212, 255, 0, 0.4); /* Glow only, no borders */
+            box-shadow: 0 0 50px rgba(212, 255, 0, 0.5); 
             filter: grayscale(0%);
             transition: var(--transition);
             object-fit: cover;
-            aspect-ratio: 1/1.5; /* Maintain aspect ratio */
+            aspect-ratio: 1/1.5;
+             /* Added floating animation */
+        }
+        
+        @keyframes image-float {
+            0%, 100% { transform: translateY(0) rotate(0.5deg); }
+            50% { transform: translateY(-15px) rotate(-0.5deg); }
         }
 
-        .hero-img:hover {
-            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
-            transform: scale(1.05) rotate(0deg);
-            box-shadow: 0 0 60px var(--accent-glow);
-        }
 
-        /* Pulsing CTA Button */
         .cta-btn {
             display: inline-block;
             margin-top: 4rem;
@@ -245,7 +325,7 @@
         .cta-btn:hover {
             background: var(--accent);
             color: var(--bg-color);
-            box-shadow: 0 0 25px var(--accent), inset 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: 0 0 30px var(--accent), inset 0 0 10px rgba(0,0,0,0.5);
             animation: none;
             transform: scale(1.05);
         }
@@ -257,7 +337,7 @@
 
 
         /* ---------------------------------- */
-        /* --- WORK GRID (3D Enhanced) --- */
+        /* --- WORK GRID (Glassmorphism 2.0 with 3D Tilt) --- */
         /* ---------------------------------- */
         .work-grid {
             display: grid;
@@ -266,37 +346,42 @@
         }
 
         .project-card {
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.05); /* Lighter base for Glassmorphism */
+            backdrop-filter: blur(10px); /* Core blur effect */
             border-radius: 16px;
             overflow: hidden;
             position: relative;
             cursor: pointer;
             transition: var(--transition);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Stronger shadow */
+            border: 1px solid rgba(255, 255, 255, 0.18); /* Subtle white border */
+            transform-style: preserve-3d; /* Key for 3D effect */
         }
         
-        /* 3D Tilt on Hover - Enhanced Perspective */
+        /* 3D Tilt on Hover */
         .project-card:hover {
-            transform: perspective(1200px) rotateY(5deg) translateY(-20px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(212, 255, 0, 0.25), 0 0 20px var(--accent-glow);
+            transform: scale(1.03) translateZ(20px);
+            box-shadow: 0 15px 50px rgba(212, 255, 0, 0.35), 0 0 20px var(--accent-glow);
         }
         
-        .project-card:active {
-            transform: scale(0.98);
+        .project-card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
         }
 
         .project-image {
             width: 100%;
             height: 350px;
             object-fit: cover;
-            filter: grayscale(100%) brightness(0.7);
+            filter: grayscale(80%) brightness(0.8);
             transition: var(--transition);
+            display: block;
+            transform: translateZ(0);
         }
 
         .project-card:hover .project-image {
             filter: grayscale(0%) brightness(1);
-            transform: scale(1.1);
+            transform: scale(1.05) translateZ(10px); /* slight 3D move */
         }
 
         .project-info {
@@ -313,7 +398,7 @@
         }
 
         .project-card:hover .project-info {
-            transform: translateY(0);
+            transform: translateY(0) translateZ(20px); /* slight 3D move */
             opacity: 1;
         }
 
@@ -321,7 +406,7 @@
             font-size: 0.9rem;
             color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             margin-bottom: 0.5rem;
             display: block;
             font-family: var(--font-accent);
@@ -363,7 +448,7 @@
             border-color: var(--accent);
             color: var(--bg-color);
             background: var(--accent);
-            box-shadow: 0 0 15px var(--accent);
+            box-shadow: 0 0 15px var(--accent), inset 0 0 0px var(--bg-color);
             transform: translateY(-5px) scale(1.05);
         }
         
@@ -377,7 +462,7 @@
         .experience-item {
             margin: 20px 0;
             padding: 25px 35px;
-            max-width: 550px;
+            max-width: 650px; /* Wider timeline */
             width: 100%;
             border-left: 5px solid var(--accent);
             background: rgba(15, 15, 15, 0.7);
@@ -386,24 +471,25 @@
             transition: var(--transition);
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             position: relative;
+            backdrop-filter: blur(5px);
         }
         
-        /* Timeline marker effect */
         .experience-item::before {
-            content: '>>';
+            content: '//'; /* Updated marker */
             position: absolute;
-            left: -18px;
+            left: -20px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) rotate(-90deg);
             color: var(--accent);
             font-family: var(--font-accent);
-            font-size: 0.9rem;
+            font-size: 1rem;
+            text-shadow: 0 0 5px var(--accent-glow);
         }
         
         .experience-item:hover {
             border-left: 5px solid var(--accent);
-            transform: translateX(15px);
-            box-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
+            transform: translateX(10px);
+            box-shadow: 0 0 25px rgba(212, 255, 0, 0.4);
             background: rgba(26, 26, 26, 0.8);
         }
         
@@ -425,11 +511,11 @@
         }
 
         /* ---------------------------------- */
-        /* --- FOOTER (Contact) --- */
+        /* --- FOOTER (Contact Icons) --- */
         /* ---------------------------------- */
         footer {
             padding: 6rem 5% 4rem 5%;
-            border-top: 1px solid rgba(212, 255, 0, 0.1);
+            border-top: 1px solid rgba(212, 255, 0, 0.2);
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
@@ -438,39 +524,46 @@
         }
 
         .footer-cta h3 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2rem, 5vw, 3.8rem);
             margin-bottom: 1rem;
             color: var(--accent);
             font-family: var(--font-accent);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-shadow: 0 0 10px var(--accent-glow);
+            line-height: 1.2;
         }
         
         .footer-cta p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            max-width: 400px;
+            max-width: 450px;
+            font-weight: 300;
         }
 
         .socials {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 15px;
+            align-items: center;
+            gap: 20px; /* Changed to row layout for icons */
         }
         
         .socials a {
-            color: var(--text-main);
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--text-muted);
+            color: var(--text-muted);
+            font-size: 1.5rem;
             transition: var(--transition);
-            font-weight: 600;
-            font-size: 1.05rem;
-            position: relative;
         }
 
         .socials a:hover { 
+            border-color: var(--accent); 
             color: var(--accent); 
-            transform: translateX(-5px);
-            text-shadow: 0 0 10px var(--accent-glow);
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
         
         /* Copyright Text */
@@ -504,24 +597,31 @@
             .hero p { margin-left: auto; margin-right: auto; }
             
             .hero-image-container { order: -1; margin-bottom: 20px; }
-            .hero-img { max-width: 300px; clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%); } /* Simpler polygon for mobile */
+            .hero-img { max-width: 300px; clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%); }
             
             nav { padding: 1rem 5%; }
             .nav-links { display: none; }
             
             footer { justify-content: center; text-align: center; }
-            .socials { align-items: center; }
+            .socials { justify-content: center; gap: 15px; width: 100%; }
             .footer-cta p { margin-left: auto; margin-right: auto; }
+            .socials a { width: 45px; height: 45px; font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
+    
+    <canvas id="neural-network-canvas"></canvas>
+    
+    <div class="blob"></div>
+    <div class="blob"></div>
+    <div class="blob"></div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
-            duration: 1200, // Duration of the animation
-            once: true, // Animation only happens once
+            duration: 1200,
+            once: true,
         });
     </script>
     
@@ -529,15 +629,17 @@
         <div class="logo">NIDHISH MANI.</div>
         <div class="nav-links">
             <a href="#work">Work</a>
-            <a href="#about">About & Skills</a>
-            <a href="#contact">Contact</a>
+            <a href="#about">Skills</a>
+            <a href="#contact">Connect</a>
         </div>
     </nav>
 
     <header class="hero">
         <div class="hero-content">
             <h1 data-aos="fade-up" data-aos-delay="200">
-                Visual and Interactive Designer 
+                <span data-text="NIDHISH MANI" class="glitch-text">NIDHISH MANI</span>
+                <br>
+                Visual & Interactive Designer
                 <br> crafting <span class="role-highlight">impactful</span> user experiences.
             </h1>
             <p data-aos="fade-up" data-aos-delay="400">
@@ -561,34 +663,41 @@
 
         <div class="work-grid">
             <a href="#" class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <img src="UI UX.jpg" alt="UI/UX Prototyping" class="project-image">
-                <div class="project-info">
-                    <span class="project-cat">UI/UX & Web Design</span>
-                    <h3 class="project-title">Responsive Web Interface Mockups</h3>
+                <div class="project-card-inner" data-tilt> <img src="UI UX.jpg" alt="UI/UX Prototyping" class="project-image">
+                    <div class="project-info">
+                        <span class="project-cat">UI/UX & Web Design</span>
+                        <h3 class="project-title">Responsive Web Interface Mockups</h3>
+                    </div>
                 </div>
             </a>
 
             <a href="#" class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <img src="video editing.jpg" alt="Video Advertising" class="project-image">
-                <div class="project-info">
-                    <span class="project-cat">Motion & Media Ads</span>
-                    <h3 class="project-title">Video Advertising Campaigns</h3>
+                <div class="project-card-inner" data-tilt>
+                    <img src="video editing.jpg" alt="Video Advertising" class="project-image">
+                    <div class="project-info">
+                        <span class="project-cat">Motion & Media Ads</span>
+                        <h3 class="project-title">Video Advertising Campaigns</h3>
+                    </div>
                 </div>
             </a>
 
             <a href="#" class="project-card" data-aos="fade-up" data-aos-delay="300">
-                <img src="graphic-design-in-print-media.png" alt="Print Campaign" class="project-image">
-                <div class="project-info">
-                    <span class="project-cat">Graphic Design & Print</span>
-                    <h3 class="project-title">High-Resolution Print Media</h3>
+                <div class="project-card-inner" data-tilt>
+                    <img src="graphic-design-in-print-media.png" alt="Print Campaign" class="project-image">
+                    <div class="project-info">
+                        <span class="project-cat">Graphic Design & Print</span>
+                        <h3 class="project-title">High-Resolution Print Media</h3>
+                    </div>
                 </div>
             </a>
 
             <a href="#" class="project-card" data-aos="fade-up" data-aos-delay="400">
-                <img src="wire.jpg" alt="Figma Prototyping" class="project-image">
-                <div class="project-info">
-                    <span class="project-cat">Wireframing & Prototyping</span>
-                    <h3 class="project-title">Interactive App Prototypes</h3>
+                <div class="project-card-inner" data-tilt>
+                    <img src="wire.jpg" alt="Figma Prototyping" class="project-image">
+                    <div class="project-info">
+                        <span class="project-cat">Wireframing & Prototyping</span>
+                        <h3 class="project-title">Interactive App Prototypes</h3>
+                    </div>
                 </div>
             </a>
         </div>
@@ -600,7 +709,7 @@
             <span>3.5 Years Career Span</span>
         </div>
         
-        <h3 style="text-align: center; color: var(--accent); margin-bottom: 2rem;" data-aos="fade-up" data-aos-delay="100">Key Proficiencies</h3>
+        <h3 style="text-align: center; color: var(--accent); margin-bottom: 2rem;" data-aos="fade-up" data-aos-delay="100">Key Proficiencies // Software Stack</h3>
 
         <div class="skill-list" data-aos="zoom-in" data-aos-delay="200">
             <div class="skill-item">UI/UX Design</div>
@@ -618,7 +727,7 @@
         
         <div class="experience-timeline">
             <div class="section-header" style="margin-top: 5rem; padding: 0;" data-aos="fade-up">
-                <h2 style="font-size: 2rem; border-bottom: none;">Career Summary</h2>
+                <h2 style="font-size: 2rem; border-bottom: none;">Career Summary // Timeline</h2>
             </div>
             <div class="experience-item" data-aos="fade-right" data-aos-delay="100">
                 <strong>GRAPHIC DESIGNER, Twenty4 </strong>
@@ -650,17 +759,27 @@
             <p>I am currently available for new design challenges, freelance, and full-time roles. Reach out and let's create something impactful.</p>
         </div>
         <div class="socials" data-aos="fade-left">
-            <a href="mailto:nidhishjo555@gmail.com" style="color: var(--accent);">Email: nidhishjo555@gmail.com</a>
-            <a href="tel:+919567460883">Mobile: +91 9567460883</a>
-            <a href="https://www.behance.net/nidhishjo555" target="_blank">Behance: nidhishjo555</a>
-            <a href="#" target="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile">LinkedIn </a>
+            <a href="mailto:nidhishjo555@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="tel:+919567460883" aria-label="Phone"><i class="fas fa-phone-alt"></i></a>
+            <a href="https://www.behance.net/nidhishjo555" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
+            <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             © 2025 Nidhish Mani.
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    
     <script>
+        // Initialize Vanilla-Tilt for Project Cards
+        VanillaTilt.init(document.querySelectorAll(".project-card-inner"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.5,
+        });
+
         // Smooth scrolling for anchor links (adjusted for fixed nav height)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -680,6 +799,118 @@
                 }
             });
         });
+        
+        // ----------------------------------
+        // --- NEURAL NETWORK CANVAS SCRIPT ---
+        // ----------------------------------
+        const canvas = document.getElementById('neural-network-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height, nodes, mouse;
+        const MIN_DIST = 100; // Max distance for connecting lines
+
+        // Node object constructor
+        function Node(x, y, radius) {
+            this.x = x;
+            this.y = y;
+            this.vx = Math.random() * 2 - 1; // Velocity x
+            this.vy = Math.random() * 2 - 1; // Velocity y
+            this.radius = radius;
+            this.color = 'rgba(212, 255, 0, 0.8)';
+        }
+
+        Node.prototype.draw = function() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+
+            nodes = [];
+            const numNodes = Math.floor((width * height) / 30000); // Density control
+            
+            for (let i = 0; i < numNodes; i++) {
+                nodes.push(new Node(
+                    Math.random() * width,
+                    Math.random() * height,
+                    2 // Node size
+                ));
+            }
+
+            mouse = new Node(0, 0, 5); // Mouse node
+            mouse.color = 'rgba(0, 255, 255, 1)'; // Cyan for mouse pointer
+            nodes.push(mouse); // Add mouse as a node
+        }
+
+        function update() {
+            for (let i = 0; i < nodes.length - 1; i++) { // Exclude mouse node for movement
+                let node = nodes[i];
+
+                // Boundary bounce
+                if (node.x < 0 || node.x > width) node.vx *= -1;
+                if (node.y < 0 || node.y > height) node.vy *= -1;
+
+                // Move node
+                node.x += node.vx * 0.5; // Slowed movement
+                node.y += node.vy * 0.5;
+            }
+        }
+
+        function drawLines() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const node1 = nodes[i];
+                    const node2 = nodes[j];
+
+                    const dx = node1.x - node2.x;
+                    const dy = node1.y - node2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < MIN_DIST) {
+                        const alpha = 1 - (dist / MIN_DIST);
+                        
+                        // Use accent color for connections
+                        ctx.strokeStyle = `rgba(212, 255, 0, ${alpha})`; 
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(node1.x, node1.y);
+                        ctx.lineTo(node2.x, node2.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function loop() {
+            ctx.clearRect(0, 0, width, height);
+            
+            update();
+            drawLines();
+            
+            // Draw nodes
+            for (let node of nodes) {
+                node.draw();
+            }
+
+            requestAnimationFrame(loop);
+        }
+
+        // Event listeners
+        window.addEventListener('resize', init);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        
+        // Start the simulation
+        init();
+        loop();
     </script>
 </body>
 </html>
